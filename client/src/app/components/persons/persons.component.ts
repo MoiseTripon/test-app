@@ -87,7 +87,9 @@ export class PersonsComponent implements OnInit {
       backdrop: 'static',
     });
     modalRef.componentInstance.title = `Ștergere persoana`;
-    modalRef.componentInstance.content = `<p class='text-center mt-1 mb-1'>Doriți să ștergeți persoana având tipul <b>${person.type}</b>, denumirea: <b>${person.name}</b>?`;
+    modalRef.componentInstance.content = `<p class='text-center mt-1 mb-1'>Doriți să ștergeți persoana având numele <b>${
+      person.first_name + ' ' + person.last_name
+    }</b>, CNP: <b>${person.cnp}</b>?`;
     modalRef.closed.subscribe(() => {
       axios
         .delete(`/api/persons/${person.id}`)

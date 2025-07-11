@@ -96,7 +96,7 @@ export class CarsComponent implements OnInit {
       backdrop: 'static',
     });
     modalRef.componentInstance.title = `Ștergere mașină`;
-    modalRef.componentInstance.content = `<p class='text-center mt-1 mb-1'>Doriți să ștergeți mașina <b>${car.brand_name} ${car.model_name}</b>?`;
+    modalRef.componentInstance.content = `<p class='text-center mt-1 mb-1'>Doriți să ștergeți mașina <b>${car.brand_name} ${car.model_name}, ${car.engine_capacity} cm³ din anul ${car.production_year}</b>?`;
     modalRef.closed.subscribe(() => {
       axios
         .delete(`/api/cars/${car.id}`)
