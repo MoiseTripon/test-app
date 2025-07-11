@@ -31,6 +31,9 @@ module.exports = function getModels(sequelize, Sequelize) {
   const arr = [
     /************************ Information *********************/
     {path: __dirname + '/information.js', sync: true},
+    {path: __dirname + '/car.js', sync: true},
+    {path: __dirname + '/person.js', sync: true},
+    {path: __dirname + '/person_car.js', sync: true},
   ];
 
   const syncTables = [];
@@ -41,6 +44,12 @@ module.exports = function getModels(sequelize, Sequelize) {
       syncTables.push(model);
     } else {
       require(path.join(file.path))(sequelize, Sequelize);
+    }
+  });
+
+  Object.keys(sequelize.models).forEach(modelName => {
+    if (sequelize.models[modelName].associate) {
+      sequelize.models[modelName].associate(sequelize.models);
     }
   });
 
